@@ -1,0 +1,52 @@
+/* fadilxcodcer */
+
+body{
+    margin:0;
+    font-family: Open Sans, Arial;
+    position: relative;
+    background: url(back.jpg);
+    background-size: cover;
+}
+.formWrapper{
+    width: 400px;
+    padding: 50px;
+    background: white;
+    margin: 10% auto 0;
+}
+#promo{
+    position: absolute;
+    left: 300px;
+    top: -100px;
+}
+.formWrapper h4{
+    color: #9761c4;
+    font-size: 30px;
+}
+.field-wrapper input{
+    width: 375px;
+    padding: 10px;
+    outline: none;
+    border: 1px solid grey;
+}
+.field-wrapper{
+    margin-bottom: 10px;
+}
+#submit-btn{
+    width: 200px;
+    background: #9761c4;
+    border: none;
+    color: #000;
+    outline: none;
+    padding: 10px;
+}
+.field-wrapper label.error{
+    color: red !important;
+    font-size: 12px !important;
+    clear: both !important;
+}
+.alert-success{
+    color: green !important;
+}
+.alert-danger{
+    color: red !important;
+}

@@ -1,7 +1,7 @@
 /* fadilxcoder */
 
 $(document).ready( function() { /* same as $(function(){  orr jQuery(document).ready( function() { */
-    console.log('waiting...');
+    console.log('init!');
     $('#submit-btn').on( 'click', function(f) {
 
 		// Prevent default action
@@ -36,7 +36,7 @@ $(document).ready( function() { /* same as $(function(){  orr jQuery(document).r
 			statusCode	: {
 				// Depending on status code, you can trigger specific codes
 				200 : function() {
-					console.log('200 OK')
+					console.log('200 OK'); // Success Response code
 				}
 			},
 			beforeSend	: function(){
@@ -44,23 +44,68 @@ $(document).ready( function() { /* same as $(function(){  orr jQuery(document).r
 				$('#submit-btn').attr('disabled', true).css('background-color', 'cyan');
 			},
 			success     : function(data){
+				/* N.B : This part can be replace by .done() , for best practice AVOID */
+
 				// success
-				console.log(data)
+				// console.log(data)
 			},
 			error       : function(e){
+				/* N.B : This part can be replace by .fail() , for best practice AVOID */
+
 				// Known errors
-				console.log(e);
+				// console.log(e);
 				//console.log(e.statusText);
 			},
 			fail        : function (){
+				/* N.B : For best practice AVOID  */
+
 				// Unknown errors
-				console.log('Request Fail')
+				// console.log('Request Fail');
 			},
 			complete	: function(){
+				/* N.B : This part can be replace by .always() , for best practice AVOID */
+
 				// When ajax is complete after getting response
-				$('#submit-btn').css('display', 'none');
-				console.log("end here...");
+				// $('#submit-btn').css('display', 'none');
+				// console.log("end here...");
 			}
-		});
-    });
+		})
+		.done( function (data) { 
+			//successFunction(data); // Response from function.php
+		})
+		.fail( function (jqXHR, textStatus, errorThrown) { 
+			//errorFunction(jqXHR, textStatus, errorThrown);
+		})
+		.always( function(data) {
+			// console.log('always!');
+			// console.log(data); // Response .done() from function.php OR error fron .fail()
+		})
+		.then( function(reponse, textStatus, jqXH){
+			/* N.B : Called only if succeed */
+			// triggerMe(reponse, textStatus, jqXH);
+		})
+		;
+	});
+	
+	function successFunction(data)
+	{
+		// console.log(data);
+	}
+
+	function errorFunction(jqXHR, textStatus, errorThrown)
+	{
+		// console.log(jqXHR); // Object
+		// console.log(jqXHR.status) // Getting values in the object --> 404
+		// console.log(textStatus); // --> error
+		// console.log(errorThrown); // -> Not Found
+	}
+
+	function triggerMe(reponse, textStatus, jqXHR)
+	{
+		// console.log(reponse); // Response from function.php
+		// console.log(textStatus); // --> success
+		// console.log(jqXHR); // Object
+		// console.log(jqXHR.status); // Getting values in the object --> 200
+	}
+
 });

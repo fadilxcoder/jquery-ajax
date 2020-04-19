@@ -1,7 +1,9 @@
 /* fadilxcoder */
 
 $(document).ready( function() { /* same as $(function(){  orr jQuery(document).ready( function() { */
-    console.log('init!');
+	console.log('init!');
+	
+	// AJAX
     $('#submit-btn').on( 'click', function(f) {
 
 		// Prevent default action
@@ -76,7 +78,7 @@ $(document).ready( function() { /* same as $(function(){  orr jQuery(document).r
 		.fail( function (jqXHR, textStatus, errorThrown) { 
 			//errorFunction(jqXHR, textStatus, errorThrown);
 		})
-		.always( function(data) {
+		.always( function(reponse, textStatus, jqXHR) {
 			// console.log('always!');
 			// console.log(data); // Response .done() from function.php OR error fron .fail()
 		})
@@ -87,26 +89,64 @@ $(document).ready( function() { /* same as $(function(){  orr jQuery(document).r
 		;
 	});
 	
-	
+	// AJAX GET ~ API
+
+	// var $url = 'https://reqres.in/api/users/2'; // Specific User
+	var $url = 'https://reqres.in/api/users'; // All users
+	// var $url = 'https://reqres.in/api'; // Fake
+
+
+	$.get($url, function(url, textStatus, jqXHR) {
+		// getAjax(url, textStatus, jqXHR);
+	})
+	.done( function (data) {
+		// successFunction(data);
+	})
+	.fail( function (jqXHR, textStatus, errorThrown) {
+		// errorFunction(jqXHR, textStatus, errorThrown);
+	})
+	.always( function (reponse, textStatus, jqXHR) {
+		// triggerMe(reponse, textStatus, jqXHR);
+	})
+	.then( function (reponse, textStatus, jqXHR) {
+		// triggerMe(reponse, textStatus, jqXHR);
+	})
+	;
 
 });
 function successFunction(data)
 {
-	// console.log(data);
+	console.log(data); // Response from server
 }
 
-function errorFunction(jqXHR, textStatus, errorThrown)
+function errorFunction(jqXHR, textStatus)
 {
-	// console.log(jqXHR); // Object
-	// console.log(jqXHR.status) // Getting values in the object --> 404
-	// console.log(textStatus); // --> error
-	// console.log(errorThrown); // -> Not Found
+	console.log(jqXHR); // Object
+	console.log(jqXHR.status) // Getting values in the object --> 404
+	console.log(textStatus); // --> error
 }
 
 function triggerMe(reponse, textStatus, jqXHR)
 {
-	// console.log(reponse); // Response from function.php
+	console.log(reponse); // Response from function.php
+	console.log(textStatus); // --> success
+	console.log(jqXHR); // Object
+	console.log(jqXHR.status); // Getting values in the object --> 200
+}
+
+function getAjax(data, textStatus, jqXHR)
+{
+	// console.log(data); // Response from server
 	// console.log(textStatus); // --> success
 	// console.log(jqXHR); // Object
-	// console.log(jqXHR.status); // Getting values in the object --> 200
+	// console.log(jqXHR.statusCode); // --> 200 OK
+	// console.log(data.data.email); // --> shows email of Specific User
+
+	const objectArray = Object.entries(data.data); // Convert JSON response to array
+
+	objectArray.forEach(([key, value]) => {
+		// Converting the JSON string as an Associative array's key ['firstname']
+		// Converting ths JSON value as the Associative array's key value : ['firstname' => ''value]  ; It can either be an object, an object of object
+		console.log('[' + key + '] => ' + value); 
+	});
 }

@@ -87,25 +87,26 @@ $(document).ready( function() { /* same as $(function(){  orr jQuery(document).r
 		;
 	});
 	
-	function successFunction(data)
-	{
-		// console.log(data);
-	}
-
-	function errorFunction(jqXHR, textStatus, errorThrown)
-	{
-		// console.log(jqXHR); // Object
-		// console.log(jqXHR.status) // Getting values in the object --> 404
-		// console.log(textStatus); // --> error
-		// console.log(errorThrown); // -> Not Found
-	}
-
-	function triggerMe(reponse, textStatus, jqXHR)
-	{
-		// console.log(reponse); // Response from function.php
-		// console.log(textStatus); // --> success
-		// console.log(jqXHR); // Object
-		// console.log(jqXHR.status); // Getting values in the object --> 200
-	}
+	
 
 });
+function successFunction(data)
+{
+	// console.log(data);
+}
+
+function errorFunction(jqXHR, textStatus, errorThrown)
+{
+	// console.log(jqXHR); // Object
+	// console.log(jqXHR.status) // Getting values in the object --> 404
+	// console.log(textStatus); // --> error
+	// console.log(errorThrown); // -> Not Found
+}
+
+function triggerMe(reponse, textStatus, jqXHR)
+{
+	// console.log(reponse); // Response from function.php
+	// console.log(textStatus); // --> success
+	// console.log(jqXHR); // Object
+	// console.log(jqXHR.status); // Getting values in the object --> 200
+}

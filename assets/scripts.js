@@ -72,19 +72,19 @@ $(document).ready( function() { /* same as $(function(){  orr jQuery(document).r
 				// console.log("end here...");
 			}
 		})
-		.done( function (data) { 
-			//successFunction(data); // Response from function.php
+		.done( function (data, textStatus, jqXHR) { 
+			// successFunction(data, textStatus, jqXHR);
 		})
 		.fail( function (jqXHR, textStatus, errorThrown) { 
-			//errorFunction(jqXHR, textStatus, errorThrown);
+			// errorFunction(jqXHR, textStatus, errorThrown);
 		})
 		.always( function(reponse, textStatus, jqXHR) {
 			// console.log('always!');
 			// console.log(data); // Response .done() from function.php OR error fron .fail()
 		})
-		.then( function(reponse, textStatus, jqXH){
+		.then( function(reponse, textStatus, jqXHR){
 			/* N.B : Called only if succeed */
-			// triggerMe(reponse, textStatus, jqXH);
+			// triggerMe(reponse, textStatus, jqXHR);
 		})
 		;
 	});
@@ -92,15 +92,39 @@ $(document).ready( function() { /* same as $(function(){  orr jQuery(document).r
 	// AJAX GET ~ API
 
 	// var $url = 'https://reqres.in/api/users/2'; // Specific User
-	var $url = 'https://reqres.in/api/users'; // All users
+	// var $url = 'https://reqres.in/api/users'; // All users
 	// var $url = 'https://reqres.in/api'; // Fake
+	var $url = 'get-ajax.php';
 
 
-	$.get($url, function(url, textStatus, jqXHR) {
+	$.get($url, {number: 7}, function(url, textStatus, jqXHR) {
 		// getAjax(url, textStatus, jqXHR);
 	})
-	.done( function (data) {
-		// successFunction(data);
+	.done( function (data, textStatus, jqXHR) {
+		// successFunction(data, textStatus, jqXHR);
+	})
+	.fail( function (jqXHR, textStatus, errorThrown) {
+		// errorFunction(jqXHR, textStatus, errorThrown);
+	})
+	.always( function (reponse, textStatus, jqXHR) {
+		// triggerMe(reponse, textStatus, jqXHR);
+	})
+	.then( function (reponse, textStatus, jqXHR) {
+		// triggerMe(reponse, textStatus, jqXHR);
+	})
+	;
+
+	// AJAX POST - API
+
+	var $url = 'https://reqres.in/api/users/';
+
+	var $obj = { "name": "NameOfUser", "job": "Web Dev"};
+
+	$.post($url, $obj, function(url, textStatus, jqXHR) {
+		// postAjax(url, textStatus, jqXHR);
+	})
+	.done( function (data, textStatus, jqXHR) {
+		// successFunction(data, textStatus, jqXHR);
 	})
 	.fail( function (jqXHR, textStatus, errorThrown) {
 		// errorFunction(jqXHR, textStatus, errorThrown);
@@ -114,16 +138,19 @@ $(document).ready( function() { /* same as $(function(){  orr jQuery(document).r
 	;
 
 });
-function successFunction(data)
+function successFunction(data, textStatus, jqXHR)
 {
 	console.log(data); // Response from server
+	console.log(textStatus); // --> success
+	console.log(jqXHR); // Object
 }
 
-function errorFunction(jqXHR, textStatus)
+function errorFunction(jqXHR, textStatus, errorThrown)
 {
 	console.log(jqXHR); // Object
 	console.log(jqXHR.status) // Getting values in the object --> 404
 	console.log(textStatus); // --> error
+	console.log(errorThrown); // --> Not Found (in $.ajax)
 }
 
 function triggerMe(reponse, textStatus, jqXHR)
@@ -150,3 +177,23 @@ function getAjax(data, textStatus, jqXHR)
 		console.log('[' + key + '] => ' + value); 
 	});
 }
+
+function postAjax(data, textStatus, jqXHR)
+{
+	console.log(data); // Response from server
+	console.log(textStatus); // --> success
+	console.log(jqXHR); // Object
+}
+
+// FETCH in JS
+const url = 'https://reqres.in/api/users/7';
+
+fetch(url)
+	.then( function(response) {  // .then((resp) => resp.json())
+		// return response.json(); // Convert response into JSON
+	})
+	.then( function(data) { // ==> .then((data) => {
+		// console.log(data); // Response from Server
+		// console.log(data.data.email); // user email
+	})
+;

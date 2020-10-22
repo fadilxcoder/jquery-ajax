@@ -15,7 +15,7 @@ body{
 }
 #promo{
     position: absolute;
-    left: 300px;
+    left: 375px;
     top: -100px;
 }
 .formWrapper h4{
@@ -31,13 +31,15 @@ body{
 .field-wrapper{
     margin-bottom: 10px;
 }
-#submit-btn{
+#submit-btn,
+#change-btn{
     width: 200px;
     background: #9761c4;
     border: none;
     color: #000;
     outline: none;
     padding: 10px;
+    text-decoration: none;
 }
 .field-wrapper label.error{
     color: red !important;

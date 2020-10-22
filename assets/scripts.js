@@ -136,8 +136,8 @@ $(document).ready( function() { /* same as $(function(){  orr jQuery(document).r
 		// triggerMe(reponse, textStatus, jqXHR);
 	})
 	;
-
 });
+
 function successFunction(data, textStatus, jqXHR)
 {
 	console.log(data); // Response from server
@@ -197,3 +197,21 @@ fetch(url)
 		// console.log(data.data.email); // user email
 	})
 ;
+
+// Change Text
+
+$(document).on('click', '#change-btn', function (e) {
+	e.preventDefault();
+	$.ajax({
+		url			: 'views/response.php',
+		dataType	: 'json',
+	})
+	.done( function(data) {
+		console.log(data);
+		console.log(data.status);
+		if (data.status === 'ok') {
+			$('#ajax-render').html(data.view);
+		}
+	})
+	;
+});

@@ -215,3 +215,14 @@ $(document).on('click', '#change-btn', function (e) {
 	})
 	;
 });
+
+$(document).on('click', 'h4[data-action="center-content"]', function(e) {
+	var target = this.dataset.target;
+	$(target).css({
+		'right' : '275px',
+		'left' : 'initial'
+	});
+	$(this).css({
+		'text-align' : 'center',
+	});
+});

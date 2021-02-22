@@ -18,9 +18,8 @@
             <img src="assets/responsive.png" id="promo">
             <div class="formWrapper">
                 <div id="ajax-render">
-                    <h4>Lorem ipsum dolor sit amet.</h4>
+                    <h4 data-action="center-content" data-target="#promo" title="Click to see effect !">Lorem ipsum dolor sit amet.</h4>
                 </div>
-                
                 <a id="change-btn" href="#">Submit</a>
             </div>
         </main>
